@@ -1,22 +1,25 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environments';
+import { HttpClient } from '@angular/common/http';
+import { Observable, shareReplay, tap } from 'rxjs';
+import { RawgResponse } from '../interface/rawg-response.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RawgService {
+
+  private cache$?: Observable<RawgResponse>;
+
   constructor(private http: HttpClient) {}
 
-  getNewGames() {
-    const year = new Date().getFullYear();
+  getNewGames(): Observable<RawgResponse> {
+    if (!this.cache$) {
+      this.cache$ = this.http.get<RawgResponse>('/api/rawg').pipe(
+        tap(res => console.log('API OK:', res)),
+        shareReplay(1)
+      );
+    }
 
-    const params = new HttpParams()
-      .set('key', environment.rawgApiKey)
-      .set('dates', `${year}-01-01,${year}-12-31`)
-      .set('ordering', '-released')
-      .set('page_size', '10');
-
-    return this.http.get<any>('https://api.rawg.io/api/games', { params });
+    return this.cache$;
   }
 }

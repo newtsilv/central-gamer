@@ -1,26 +1,27 @@
 <main class="p-10 rounded-2xl">
-  <h1 class="text-4xl font-bold">Novos jogos</h1>
-@for (game of games; track game.name) {
-  <div class="w-2xs h-70 bg-gray-200 mt-10">
-    <img [src]="game.background_image" alt="imagem do jogo" class="h-[50%] bg-amber-200" />
+  <h1 class="text-4xl font-bold mb-6">Novos jogos</h1>
 
-    <div class="p-4">
-      <div>
-        <img src="" alt="plataforma" />
-      </div>
+  <div
+    class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
+  >
+    @for (game of games; track game.name) {
+      <div class="w-64 bg-gray-200 mt-6 rounded-xl overflow-hidden">
+        <img [src]="game.background_image" [alt]="game.name" class="h-40 w-full object-cover" />
 
-        <div>{{ game.name }}</div>
-      <div>
-        <div class="flex justify-between">
-          <span class="text-sm">Data de lançamento</span>
-          <span class="text-sm font-semibold">{{ game.released | date: 'dd/MM/yyyy' }}</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-sm">Genero</span>
-          <span class="text-sm font-semibold">Ação, Aventura</span>
+        <div class="p-4">
+          <h2 class="font-semibold">{{ game.name }}</h2>
+
+          <div class="flex justify-between text-sm mt-2">
+            <span>Data</span>
+            <span>{{ game.released | date: 'dd/MM/yyyy' }}</span>
+          </div>
+
+          <div class="flex justify-between text-sm mt-2">
+            <span>Gênero:</span>
+            <span>{{ getGenres(game) }}</span>
+          </div>
         </div>
       </div>
-    </div>
+    }
   </div>
-}
 </main>

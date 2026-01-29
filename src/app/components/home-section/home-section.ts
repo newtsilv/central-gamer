@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Game } from '../../interface/game.interface';
 import { RawgService } from '../../services/rawg.service';
-import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-section',
@@ -10,18 +11,34 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home-section.html',
   styleUrl: './home-section.css',
 })
-export class HomeSection {
+export class HomeSection implements OnInit {
   games: Game[] = [];
+  loading = true;
+  error = false;
 
   constructor(private rawgService: RawgService) {}
+  getGenres(game: Game): string {
+    return game.genres?.map((g) => g.name).join(', ') ?? '—';
+  }
 
   ngOnInit(): void {
+    const cached = localStorage.getItem('rawg-games');
+
+    if (cached) {
+      this.games = JSON.parse(cached);
+      this.loading = false;
+      return;
+    }
+
     this.rawgService.getNewGames().subscribe({
-      next: (response) => {
+      next: (response: { results: Game[] }) => {
         this.games = response.results;
+        localStorage.setItem('rawg-games', JSON.stringify(this.games));
+        this.loading = false;
       },
-      error: (err) => {
-        console.error(err);
+      error: (err: HttpErrorResponse) => {
+        console.error('Erro real:', err);
+        this.loading = false;
       },
     });
   }
