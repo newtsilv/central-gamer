@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../interface/game.interface';
 import { RawgService } from '../../services/rawg.service';
@@ -11,34 +11,27 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './home-section.html',
   styleUrl: './home-section.css',
 })
-export class HomeSection implements OnInit {
-  games: Game[] = [];
+export class HomeSection{
+  games = signal<Game[]>([]);
   loading = true;
   error = false;
 
-  constructor(private rawgService: RawgService) {}
+  constructor(private rawgService: RawgService) {
+    effect(() => { this.loadGames(); });
+  }
   getGenres(game: Game): string {
     return game.genres?.map((g) => g.name).join(', ') ?? '—';
   }
 
-  ngOnInit(): void {
-    const cached = localStorage.getItem('rawg-games');
-
-    if (cached) {
-      this.games = JSON.parse(cached);
-      this.loading = false;
-      return;
-    }
-
+  loadGames(){
     this.rawgService.getNewGames().subscribe({
-      next: (response: { results: Game[] }) => {
-        this.games = response.results;
-        localStorage.setItem('rawg-games', JSON.stringify(this.games));
-        this.loading = false;
+      next: (response) => {
+        this.games.set(response.results);
+        console.log('Jogos carregados:', this.games());
+
       },
       error: (err: HttpErrorResponse) => {
         console.error('Erro real:', err);
-        this.loading = false;
       },
     });
   }
