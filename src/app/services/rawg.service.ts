@@ -28,7 +28,7 @@ export class RawgService {
       },
     });
   }
-  
+
   searchGames(query: string): Observable<RawgResponse> {
     return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
       params: {
@@ -39,4 +39,14 @@ export class RawgService {
     }
     )
   }
+
+  searcBestRated(): Observable<RawgResponse> {
+    return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
+      params: {
+        key: environment.rawgApiKey,
+        ordering: `-metacritic`
+      }
+    })
+  }
+
 }

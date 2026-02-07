@@ -27,8 +27,6 @@ export class HomeSection{
     this.rawgService.getNewGames().subscribe({
       next: (response) => {
         this.games.set(response.results);
-        console.log('Jogos carregados:', this.games());
-
       },
       error: (err: HttpErrorResponse) => {
         console.error('Erro real:', err);

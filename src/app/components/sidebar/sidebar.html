@@ -1,11 +1,16 @@
-<section class="w-[15vw] h-full bg-[#2d2d2d] border border-[#525252] text-white flex flex-col">
-  <button class="cursor-pointer">
-    <h1>Populares</h1>
-  </button>
-  <button class="cursor-pointer">
-    <h1>Bem avaliados</h1>
-  </button>
-  <button class="cursor-pointer">
-    <h1>desenvolvedor</h1>
-  </button>
+<section
+  class="w-[15vw] h-screen bg-[#2d2d2d] border border-[#525252] text-white md:flex flex-col p-4 hidden"
+>
+  <div class="w-full flex flex-col items-start gap-5" >
+    <app-seach-input />
+    <button class="cursor-pointer hover:text-[#057aff]">
+      <h1>Populares</h1>
+    </button>
+    <button class="cursor-pointer hover:text-[#057aff]">
+      <h1>Bem avaliados</h1>
+    </button>
+    <button class="cursor-pointer hover:text-[#057aff]">
+      <h1>desenvolvedor</h1>
+    </button>
+  </div>
 </section>

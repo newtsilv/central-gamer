@@ -1,10 +1,10 @@
 <main class="p-10 bg-[#1e1e1e] h-full text-white md:max-h-screen md:overflow-auto">
-  <h1 class="text-4xl font-bold mb-6">Jogos Populares</h1>
+  <h1 class="relative text-4xl font-bold mb-6 left-5">Mais Bem Avaliados</h1>
 
-  <div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] w-full place-items-center">
+  <div class="grid gap-1 grid-cols-[repeat(auto-fit,minmax(280px,1fr))] w-full place-items-center ">
     @for (game of games(); track game.name) {
       <div
-        class="w-64 bg-[#2d2d2d] mt-6 rounded-xl overflow-hidden border border-[#525252] hover:transform hover:scale-105 duration-300 ease-in-out items-center"
+        class="w-64 bg-[#2d2d2d] mt-6 rounded-xl overflow-hidden border border-[#525252] hover:transform hover:scale-105 duration-300 ease-in-out md:min-h-70"
       >
         <img [src]="game.background_image" [alt]="game.name" class="h-40 w-full object-cover" />
 
