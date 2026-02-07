@@ -11,13 +11,32 @@ export class RawgService {
   private readonly apiUrl = environment.rawgApiUrl;
 
   constructor(private http: HttpClient) {}
+  getGames(): Observable<RawgResponse> {
+    return this.http.get<RawgResponse>(`${this.apiUrl}/games`, {
+      params: {
+        key: environment.rawgApiKey,
+      },
+    });
+  }
 
   getNewGames(): Observable<RawgResponse> {
+    return this.http.get<RawgResponse>(`${this.apiUrl}/games`, {
+      params: {
+        key: environment.rawgApiKey,
+        dates: '2025-01-01,2026-12-31',
+        ordering: '-added',
+      },
+    });
+  }
+  
+  searchGames(query: string): Observable<RawgResponse> {
     return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
       params: {
         key: environment.rawgApiKey,
+        search: query,
+        ordering: '-added'
       }
-    });
-
+    }
+    )
   }
 }

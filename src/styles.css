@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+.p-inputtext {
+  background-color: #1a1A1A !important;
+  color: white !important;
+}
+.p-inputtext:focus,
+.p-inputtext:focus-visible,
+.p-inputtext.p-focus {
+  border-color: #057aff !important; /* red-600 */
+  box-shadow: 0 0 0 2px rgba(0, 68, 255, 0.4) !important;
+}
+.p-iconfield:has(.p-inputtext.p-focus) .pi {
+  color: #dc2626;
+}
