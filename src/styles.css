@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
-@import "primeicons/primeicons.css";
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
 
 .p-inputtext {
-  background-color: #1a1A1A !important;
+  background-color: #1a1a1a !important;
   color: white !important;
 }
 .p-inputtext:focus,
@@ -12,4 +12,11 @@
 .p-inputtext.p-focus {
   border-color: #057aff !important; /* red-600 */
 }
-
+.p-button {
+  background-color: transparent !important;
+  border: none !important;
+}
+.p-drawer {
+  background-color: #1e1e1e !important;
+  border: none !important;
+}

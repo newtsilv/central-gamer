@@ -2,15 +2,50 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
-import { SeachInput } from "../../shared/components/seach-input/seach-input";
+import { SeachInput } from '../../shared/components/seach-input/seach-input';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { Drawer, DrawerModule } from 'primeng/drawer';
+import { RippleModule } from 'primeng/ripple';
+import { Sidebar } from "../sidebar/sidebar";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [FloatLabelModule, InputTextModule, FormsModule, SeachInput],
+  imports: [
+    FloatLabelModule,
+    InputTextModule,
+    FormsModule,
+    SeachInput,
+    AvatarModule,
+    ButtonModule,
+    DrawerModule,
+    RippleModule,
+    Sidebar
+],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
-  value: string | undefined;
+    constructor(private router: Router){}
+    value: string | undefined;
+    drawerRef: any;
+    visible: boolean = false;
+    closeCallback(e: any): void {
+      this.drawerRef.close(e);
+    }
+    goToPopular(){
+      this.visible = false
+      this.router.navigate(['/'])
+
+    }
+    gotToBestRated(){
+      this.visible = false
+      this.router.navigate(['/populares'])
+    }
+    goToDeveloper(){
+      this.visible = false
+      this.router.navigate(['/desenvolvedor'])
+    }
 }

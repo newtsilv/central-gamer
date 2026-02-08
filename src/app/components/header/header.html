@@ -1,3 +1,19 @@
-<header class="flex justify-center p-4 w-full text-white bg-[#1e1e1e] md:hidden">
-  <app-seach-input class="w-[80%]"/>
+<header class="flex justify-center p-4 text-white bg-[#1e1e1e] md:hidden">
+  <app-seach-input class="w-[90%]" />
+  <p-drawer #drawerRef [(visible)]="visible">
+    <span  class=" text-white left-6">
+      <div class="w-full flex flex-col items-start gap-5">
+        <button class="cursor-pointer hover:text-[#057aff]" (click)="goToPopular()">
+          <h1>Populares</h1>
+        </button>
+        <button class="cursor-pointer hover:text-[#057aff]" (click)="gotToBestRated()">
+          <h1>Bem avaliados</h1>
+        </button>
+        <button class="cursor-pointer hover:text-[#057aff]" (click)="goToDeveloper()">
+          <h1>desenvolvedor</h1>
+        </button>
+      </div>
+    </span>
+  </p-drawer>
+  <p-button (click)="visible = true" icon="pi pi-bars" class="bg-transparent"/>
 </header>

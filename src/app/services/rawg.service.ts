@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, shareReplay, tap } from 'rxjs';
+import { map, Observable, shareReplay, tap } from 'rxjs';
 import { RawgResponse } from '../interface/rawg-response.interface';
 import { environment } from '../../environments/environments';
+import { Game } from '../interface/game.interface';
+
+export interface RawgResp {
+  results: Game[];
+}
 
 @Injectable({
   providedIn: 'root',
@@ -29,15 +34,14 @@ export class RawgService {
     });
   }
 
-  searchGames(query: string): Observable<RawgResponse> {
+  searchGames(query: string){
     return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
       params: {
         key: environment.rawgApiKey,
         search: query,
-        ordering: '-added'
       }
     }
-    )
+    ).pipe(map(res => res.results))
   }
 
   searcBestRated(): Observable<RawgResponse> {

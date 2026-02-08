@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, ElementRef, QueryList, signal, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../interface/game.interface';
 import { RawgService } from '../../services/rawg.service';
@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './home-section.css',
 })
 export class HomeSection{
+
   games = signal<Game[]>([]);
   loading = true;
   error = false;
@@ -20,7 +21,7 @@ export class HomeSection{
     effect(() => { this.loadGames(); });
   }
   getGenres(game: Game): string {
-    return game.genres?.map((g) => g.name).join(', ') ?? '—';
+    return game.genres?.slice(0, 2).map((g) => g.name).join(', ') ?? '—';
   }
 
   loadGames(){
@@ -33,4 +34,5 @@ export class HomeSection{
       },
     });
   }
+
 }
