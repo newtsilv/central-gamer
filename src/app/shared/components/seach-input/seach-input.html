@@ -1,11 +1,26 @@
-<div class="card flex flex-wrap justify-center items-end w-full rounded-2xl text-white">
+<div class="card flex flex-wrap justify-center items-end w-full rounded-2xl text-white relative">
   <p-iconfield class="w-full">
     <p-inputicon class="pi pi-search" />
     <input
       type="text"
       pInputText
+      [(ngModel)]="value"
+      (input)="onSearch()"
       placeholder="Search"
-      class="bg-[#2d2d2d] w-full "
+      class="bg-[#2d2d2d] w-full"
     />
   </p-iconfield>
+
+  @if (results().length > 0) {
+    <div class="absolute top-full mt-2 w-full bg-[#1e1e1e] rounded-xl shadow-lg z-50 max-h-70 overflow-x-auto overflow-y-none scrollbar-hidden">
+      @for (game of results(); track game.id) {
+        <div
+          class="px-4 py-3 hover:bg-zinc-700 cursor-pointer flex items-center gap-3 text-sm"
+          (click)="goToDetails(game.id)"
+        >
+          <span>{{ game.name }}</span>
+        </div>
+      }
+    </div>
+  }
 </div>

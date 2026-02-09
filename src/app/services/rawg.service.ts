@@ -34,23 +34,40 @@ export class RawgService {
     });
   }
 
-  searchGames(query: string){
-    return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
+  getGameDetails(id: string): Observable<RawgResponse> {
+    return this.http.get<RawgResponse>(`${this.apiUrl}/games/${id}`, {
       params: {
         key: environment.rawgApiKey,
-        search: query,
-      }
-    }
-    ).pipe(map(res => res.results))
+      },
+    });
+  }
+
+  searchGames(query: string) {
+    return this.http
+      .get<RawgResponse>(`${this.apiUrl}/games`, {
+        params: {
+          key: environment.rawgApiKey,
+          search: query,
+          page_size: 10,
+        },
+      })
+      .pipe(map((res) => res.results));
   }
 
   searcBestRated(): Observable<RawgResponse> {
-    return this.http.get<RawgResponse>(`${this.apiUrl}/games`,{
+    return this.http.get<RawgResponse>(`${this.apiUrl}/games`, {
       params: {
         key: environment.rawgApiKey,
-        ordering: `-metacritic`
-      }
-    })
+        ordering: `-rating`,
+      },
+    });
   }
 
+  getPlatforms() {
+    return this.http
+      .get<any>(`${this.apiUrl}/platforms`, {
+        params: { key: environment.rawgApiKey },
+      })
+      .pipe(map((res) => res.results));
+  }
 }

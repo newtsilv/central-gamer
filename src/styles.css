@@ -10,7 +10,7 @@
 .p-inputtext:focus,
 .p-inputtext:focus-visible,
 .p-inputtext.p-focus {
-  border-color: #057aff !important; /* red-600 */
+  border-color: #FF2C2C !important; /* red-600 */
 }
 .p-button {
   background-color: transparent !important;
@@ -19,4 +19,26 @@
 .p-drawer {
   background-color: #1e1e1e !important;
   border: none !important;
+}
+@layer utilities {
+  /* largura do scrollbar */
+  .scrollbar-hidden::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* fundo do scrollbar (invisível) */
+  .scrollbar-hidden::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* a “bolinha” do scroll */
+  .scrollbar-hidden::-webkit-scrollbar-thumb {
+    background-color: #FF2C2C;
+    border-radius: 999px;
+  }
+
+  /* opcional: hover */
+  .scrollbar-hidden::-webkit-scrollbar-thumb:hover {
+    background-color: #FF2C2C;
+  }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../interface/game.interface';
 import { RawgService } from '../../services/rawg.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-section',
@@ -11,13 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './home-section.html',
   styleUrl: './home-section.css',
 })
-export class HomeSection{
-
+export class HomeSection {
   games = signal<Game[]>([]);
   loading = true;
   error = false;
 
-  constructor(private rawgService: RawgService) {
+  constructor(private rawgService: RawgService, private router: Router) {
     effect(() => { this.loadGames(); });
   }
   getGenres(game: Game): string {
@@ -35,4 +35,7 @@ export class HomeSection{
     });
   }
 
+  goToDetails(id: number) {
+    this.router.navigate(['/game', id]);
+  }
 }

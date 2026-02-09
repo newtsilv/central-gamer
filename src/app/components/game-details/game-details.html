@@ -1,1 +1,30 @@
-<p>game-details works!</p>
+@if (game()) {
+  <div
+    class="bg-[#1e1e1e] text-white h-full p-10 2xl:px-40 relative md:max-h-screen md:overflow-auto"
+  >
+    <div class="flex flex-row-reverse gap-10 justify-between">
+      <div class="flex flex-col w-180 gap-2">
+        <h1 class="text-3xl font-bold">{{ game().name }}</h1>
+        <div class="flex gap-4">
+          @for (genre of game().genres; track genre.id) {
+            <span class="px-3 py-1 bg-zinc-800 rounded max-w-max">
+              {{ genre.name }}
+            </span>
+          }
+        </div>
+        <div
+          [style.border-color]="getRatingColor(game().rating)"
+          [style.color]="getRatingColor(game().rating)"
+          class="border rounded px-2 max-w-max"
+        >
+          {{ game().rating }}
+        </div>
+      </div>
+      <img [src]="game().background_image" class="rounded-xl w-150 max-h-70 object-cover" />
+    </div>
+
+    <div class="prose prose-invert max-w-none mt-6">{{ game().description_raw}}</div>
+
+    <div class="flex gap-2 mt-4"></div>
+  </div>
+}

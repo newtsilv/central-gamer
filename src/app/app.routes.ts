@@ -7,6 +7,6 @@ import { Developer } from './components/developer/developer';
 export const routes: Routes = [
   {path: ``, component: HomeSection},
   {path: `populares`, component: BestRated},
-  {path: `detalhes`, component: GameDetails},
-  {path: `desenvolvedor`, component: Developer}
+  {path: `desenvolvedor`, component: Developer},
+  {path: `game/:id`, component: GameDetails}
 ];
