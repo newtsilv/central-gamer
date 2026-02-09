@@ -1,13 +1,13 @@
 @if (game()) {
   <div
-    class="bg-[#1e1e1e] text-white h-full p-10 2xl:px-40 relative md:max-h-screen md:overflow-auto"
+    class="bg-[#1e1e1e] text-white h-full min-h-190 p-10 2xl:px-40 relative md:max-h-screen md:overflow-auto"
   >
-    <div class="flex flex-row-reverse gap-10 justify-between">
-      <div class="flex flex-col w-180 gap-2">
+    <div class="flex flex-col-reverse md:flex-row-reverse gap-10 justify-between">
+      <div class="flex flex-col md:w-180 gap-2">
         <h1 class="text-3xl font-bold">{{ game().name }}</h1>
-        <div class="flex gap-4">
+        <div class="flex gap-4 overflow-auto">
           @for (genre of game().genres; track genre.id) {
-            <span class="px-3 py-1 bg-zinc-800 rounded max-w-max">
+            <span class="px-3 py-1 bg-zinc-800 rounded max-w-max ">
               {{ genre.name }}
             </span>
           }
