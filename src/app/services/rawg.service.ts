@@ -34,8 +34,8 @@ export class RawgService {
     });
   }
 
-  getGameDetails(id: string): Observable<RawgResponse> {
-    return this.http.get<RawgResponse>(`${this.apiUrl}/games/${id}`, {
+  getGameDetails(id: string): Observable<Game> {
+    return this.http.get<Game>(`${this.apiUrl}/games/${id}`, {
       params: {
         key: environment.rawgApiKey,
       },

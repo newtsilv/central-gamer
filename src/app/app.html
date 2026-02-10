@@ -1,7 +1,8 @@
 <div class="flex">
   <app-sidebar />
-  <div class="w-full">
+  <div class="w-full h-full overflow-auto md:max-h-screen scrollbar-hidden">
     <app-header />
     <router-outlet />
+    <app-footer/>
   </div>
 </div>

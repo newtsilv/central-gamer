@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { Header } from "./components/header/header";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { PrimeNG } from 'primeng/config';
+import { Footer } from "./components/footer/footer";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Sidebar],
+  imports: [RouterOutlet, Header, Sidebar, Footer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

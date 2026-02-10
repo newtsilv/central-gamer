@@ -5,9 +5,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { SeachInput } from '../../shared/components/seach-input/seach-input';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { Drawer, DrawerModule } from 'primeng/drawer';
+import { DrawerModule } from 'primeng/drawer';
 import { RippleModule } from 'primeng/ripple';
-import { Sidebar } from "../sidebar/sidebar";
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +21,7 @@ import { Router } from '@angular/router';
     ButtonModule,
     DrawerModule,
     RippleModule,
-    Sidebar
+
 ],
   templateUrl: './header.html',
   styleUrl: './header.css',

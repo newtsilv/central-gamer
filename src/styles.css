@@ -28,7 +28,7 @@
 
   /* fundo do scrollbar (invisível) */
   .scrollbar-hidden::-webkit-scrollbar-track {
-    background: transparent;
+    background: #1a1a1a;
   }
 
   /* a “bolinha” do scroll */

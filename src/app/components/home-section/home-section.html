@@ -1,13 +1,26 @@
-<main class="md:p-10 px-8 bg-[#1e1e1e] h-full min-h-screen text-white md:max-h-screen md:overflow-auto">
-  <h1 class="text-2xl md:text-4xl font-bold ">Jogos Populares</h1>
+<main
+  class="md:p-10 px-8 bg-[#1e1e1e] h-full min-h-screen text-white"
+>
+  @if (searchTerm) {
+    <h2 class="text-lg text-gray-300 mt-2">
+      Resultados de "<span class="font-semibold text-white">{{ searchTerm }}</span
+      >"
+    </h2>
+  } @else if (!searchTerm) {
+    <h1 class="text-2xl md:text-4xl font-bold">Jogos Populares</h1>
+  }
 
   <div class="md:columns-3 mt-6">
     @for (game of games(); track game.name) {
       <div
-        class=" bg-[#2d2d2d] rounded-xl overflow-hidden border border-[#525252] hover:transform hover:scale-105 duration-300 ease-in-out items-center mb-2"
+        class="bg-[#2d2d2d] rounded-xl overflow-hidden border border-[#525252] hover:transform hover:scale-105 duration-300 ease-in-out items-center mb-2"
         (click)="goToDetails(game.id)"
       >
-        <img [src]="game.background_image" [alt]="game.name" class="h-60 2xl:h-70 w-full object-cover" />
+        <img
+          [src]="game.background_image"
+          [alt]="game.name"
+          class="h-60 2xl:h-70 w-full object-cover"
+        />
 
         <div class="p-4">
           <h2 class="font-semibold">{{ game.name }}</h2>
@@ -24,6 +37,5 @@
         </div>
       </div>
     }
-
   </div>
 </main>
